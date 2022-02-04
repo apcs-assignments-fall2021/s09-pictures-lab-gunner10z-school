@@ -165,7 +165,24 @@ public class Picture extends SimplePicture
     // Bonus — Explore the "water.jpg" picture in the images folder. Write a method
     // fixUnderwater() to modify the pixel colors to make the fish easier to see
     public void fixUnderwater() {
-        // YOUR CODE HERE
+        Pixel[][] pixels = this.getPixels2D();
+        for (int row = 0; row < pixels.length; row++) {
+            for (int col = 0; col < pixels[0].length; col++) {
+                Pixel pix = pixels[row][col];
+                int avg=(pix.getGreen()+pix.getBlue()+pix.getRed())/3;
+                if(pix.getBlue()<155||pix.getGreen()>=165){
+                    pix.setGreen(avg);
+                    pix.setRed(avg);
+                    pix.setRed(avg);
+                }
+                //else{
+                    //pix.setBlue(255);
+                //}
+                /*pix.setGreen(pix.getGreen()-50);
+                pix.setBlue(pix.getBlue()-50);
+                pix.setRed(pix.getRed());*/
+            }
+        }
     }
 
     // Challenge — Write the mirrorDiagonal method that mirrors just a square part of the picture
@@ -180,7 +197,7 @@ public class Picture extends SimplePicture
      * method
      */
     public static void main(String[] args) {
-        Picture pic = new Picture("beach.jpg");
+        Picture pic = new Picture("water.jpg");
 //        Picture pic = new Picture("water.jpg");
 
         // The explore method makes a pop-up window of the current picture
@@ -189,7 +206,8 @@ public class Picture extends SimplePicture
         //pic.keepOnlyBlue();
         //pic.negate();
         //pic.grayscale();
-        pic.mirrorCopy();
+        //pic.mirrorCopy();
+        pic.fixUnderwater();
         pic.explore();
     }
 
